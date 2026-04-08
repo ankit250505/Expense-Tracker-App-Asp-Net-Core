@@ -1,0 +1,570 @@
+/* ═══════════════════════════════════════════════════════════════
+   SpendSense – dashboard.css
+   Syncfusion overrides + shared utilities
+   Layout/sidebar/topbar styles live in _Layout.cshtml <style>
+   Sidebar styles live in _SideBar.cshtml <style>
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Global Design Tokens (used by sidebar + dashboard) ── */
+:root {
+    --green: #4ade80;
+    --green-d: #22c55e;
+    --bg: #080d10;
+    --bg2: #0d1419;
+    --bg3: #111920;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.07);
+    --text: #e8f0e9;
+    --muted: #7a9180;
+    --sidebar-w: 260px;
+    --font-h: 'Syne', sans-serif;
+    --font-b: 'DM Sans', sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+/* Font override for all non-icon elements */
+*:not(.fa-solid):not(.fa):not(.e-icons) {
+    font-family: 'DM Sans', sans-serif;
+}
+
+body {
+    background-color: #080d10;
+    color: #e8f0e9;
+    margin: 0;
+    overflow-x: hidden;
+    /* overflow: hidden removed — dashboard needs to scroll */
+}
+
+/* ── BreadCrumb ─────────────────────────────────────────────── */
+.e-breadcrumb a,
+.e-breadcrumb a:hover {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* ── Button resets ──────────────────────────────────────────── */
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+.no-a-decoration,
+.no-a-decoration:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ── Syncfusion Grid ────────────────────────────────────────── */
+.e-grid {
+    border: 0;
+    border-radius: 10px;
+}
+
+    .e-grid .e-gridcontent,
+    .e-grid .e-table {
+        background-color: transparent;
+    }
+
+    .e-grid .e-gridheader {
+        border-radius: 10px 10px 0 0;
+        padding: 10px;
+        background-color: rgba(255,255,255,0.03);
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+        .e-grid .e-gridheader .e-headercell {
+            background-color: transparent;
+            color: #7a9180;
+            font-size: .78rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+    .e-grid .e-rowcell {
+        color: #e8f0e9;
+        border-color: rgba(255,255,255,0.05) !important;
+        font-size: .9rem;
+    }
+
+    .e-grid .e-gridpager,
+    .e-grid .e-pagercontainer {
+        background-color: transparent;
+        border: none;
+    }
+
+    .e-grid .e-content table {
+        padding: 0 10px;
+    }
+
+    .e-grid .e-pager {
+        padding: 10px;
+        border-radius: 0 0 10px 10px;
+    }
+
+.e-pagercontainer .e-icons {
+    background-color: transparent;
+    border: none !important;
+}
+
+.e-pager .e-numericitem {
+    color: #7a9180;
+    background-color: transparent;
+    padding: 15px !important;
+}
+
+    .e-pager .e-numericitem:not(.e-currentitem) {
+        border: none !important;
+    }
+
+    .e-pager .e-numericitem:hover {
+        color: #e8f0e9;
+    }
+
+    .e-pager .e-numericitem.e-currentitem {
+        color: #4ade80;
+        border: none !important;
+        background-color: rgba(74,222,128,0.08);
+    }
+
+.e-pager div.e-icons:not(.e-disable) {
+    color: #7a9180;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ── Syncfusion DateRangePicker ─────────────────────────────── */
+.e-daterangepicker.e-popup,
+.e-daterangepicker .e-calendar,
+.e-daterangepicker .e-header {
+    background-color: #0d1419 !important;
+    color: #e8f0e9 !important;
+    border: 1px solid rgba(255,255,255,0.07) !important;
+}
+
+.e-input-group.e-control-wrapper {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 8px !important;
+}
+
+.e-input-group .e-input {
+    color: #e8f0e9 !important;
+    font-family: 'DM Sans', sans-serif !important;
+    background: transparent !important;
+}
+
+/* ── Syncfusion Radio Button Group ──────────────────────────── */
+.e-btn-group.custom-rbt-group {
+    width: 100%;
+}
+
+    .e-btn-group.custom-rbt-group .e-btn {
+        width: 50%;
+    }
+
+.custom-rbt-group label.e-btn {
+    box-shadow: none !important;
+    border: 1px solid rgba(255,255,255,0.12);
+    background-color: rgba(255,255,255,0.04);
+    color: #e8f0e9;
+}
+
+.e-btn-group.custom-rbt-group input:checked + label.e-btn {
+    background-color: #4ade80;
+    color: #080d10;
+    border: 1px solid #4ade80;
+}
+
+/* ── Widget (used by old dashboard cards, keep for compat) ──── */
+.widget {
+    border-radius: 1rem;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+}
+
+    .widget.chart {
+        padding: 5px;
+    }
+
+/* ── Profile pic (used in sidebar + topbar) ─────────────────── */
+.profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ── Floating wallet animation (landing page hero) ──────────── */
+.fa-wallet {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* ── Scrollbar styling ──────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(74,222,128,0.3);
+    }
+
+
+<style >
+/* ═══════════════════════════════════════════════════════════
+       DASHBOARD PAGE  –  SpendSense
+       ═══════════════════════════════════════════════════════════ */
+.dash-wrap {
+    padding: 32px 40px 32px 48px;
+    font-family: 'DM Sans', sans-serif;
+    color: #e8f0e9;
+    max-width: 1400px;
+}
+
+/* ── Page Header ── */
+.dash-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+    .dash-header h1 {
+        font-family: 'Syne', sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -.03em;
+        color: #e8f0e9;
+        margin: 0;
+    }
+
+    .dash-header p {
+        color: #7a9180;
+        font-size: .9rem;
+        margin: 4px 0 0;
+    }
+
+/* ── Filter Bar ── */
+.filter-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.fc-label {
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #7a9180;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.fc-field {
+    flex: 1;
+    min-width: 220px;
+}
+
+.btn-filter {
+    font-family: 'Syne', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    padding: 11px 28px;
+    background: #4ade80;
+    color: #080d10;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .18s, transform .18s, box-shadow .18s;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+    .btn-filter:hover {
+        background: #6ee7a0;
+        transform: translateY(-1px);
+        box-shadow: 0 0 20px rgba(74,222,128,0.3);
+    }
+
+/* ── Summary Grid ── */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+
+    .summary-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .summary-card.income {
+        border-color: rgba(74,222,128,0.2);
+    }
+
+    .summary-card.expense {
+        border-color: rgba(248,113,113,0.2);
+    }
+
+    .summary-card.balance {
+        border-color: rgba(96,165,250,0.2);
+    }
+
+    .summary-card.income:hover {
+        border-color: rgba(74,222,128,0.45);
+    }
+
+    .summary-card.expense:hover {
+        border-color: rgba(248,113,113,0.45);
+    }
+
+    .summary-card.balance:hover {
+        border-color: rgba(96,165,250,0.45);
+    }
+
+.s-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+.income .s-icon {
+    background: rgba(74,222,128,0.1);
+    color: #4ade80;
+}
+
+.expense .s-icon {
+    background: rgba(248,113,113,0.1);
+    color: #f87171;
+}
+
+.balance .s-icon {
+    background: rgba(96,165,250,0.1);
+    color: #60a5fa;
+}
+
+.s-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.s-label {
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #7a9180;
+    margin-bottom: 4px;
+}
+
+.s-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1;
+}
+
+.income .s-value {
+    color: #4ade80;
+}
+
+.expense .s-value {
+    color: #f87171;
+}
+
+.balance .s-value {
+    color: #60a5fa;
+}
+
+/* ── Chart Grid ── */
+.chart-grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ── Panel (shared by charts + table) ── */
+.panel {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color .2s;
+}
+
+    .panel:hover {
+        border-color: rgba(74,222,128,0.15);
+    }
+
+.panel-header {
+    padding: 20px 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.panel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: #e8f0e9;
+}
+
+.panel-badge {
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #4ade80;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.15);
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+/* ── Bottom Grid ── */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* ── Quick Actions ── */
+.qa-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    transition: background .2s, border-color .2s;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+    .qa-item:last-child {
+        margin-bottom: 0;
+    }
+
+.qa-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.qa-title {
+    font-family: 'Syne', sans-serif;
+    font-size: .9rem;
+    font-weight: 700;
+    color: #e8f0e9;
+    letter-spacing: -.01em;
+    display: block;
+}
+
+.qa-sub {
+    font-size: .78rem;
+    color: #7a9180;
+    margin-top: 2px;
+    display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+    .summary-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .chart-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dash-wrap {
+        padding: 20px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style >

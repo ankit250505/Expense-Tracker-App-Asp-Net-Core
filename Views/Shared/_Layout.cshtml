@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/images/favicon2.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpendSense</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.syncfusion.com/ej2/20.1.55/bootstrap5-dark.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Expense_Tracker.styles.css" asp-append-version="true" />
+    <script src="https://cdn.syncfusion.com/ej2/20.1.55/dist/ej2.min.js"></script>
+
+    <style>
+        /* ═══════════════════════════════════════════════════════════
+               LAYOUT SHELL  –  SpendSense
+               ═══════════════════════════════════════════════════════════ */
+
+        /* Topbar */
+        .ss-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 800;
+            background: rgba(8,13,16,0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .ss-topbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 28px;
+            gap: 16px;
+            flex-wrap: nowrap;
+        }
+
+        .ss-topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+            .ss-topbar-left i {
+                color: #7a9180;
+                font-size: .95rem;
+            }
+
+        .ss-search-input {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 7px 14px;
+            color: #e8f0e9;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            outline: none;
+            width: 260px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+            .ss-search-input::placeholder {
+                color: #7a9180;
+            }
+
+            .ss-search-input:focus {
+                border-color: rgba(74,222,128,0.4);
+                box-shadow: 0 0 0 3px rgba(74,222,128,0.07);
+            }
+
+        .ss-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ss-icon-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 8px;
+            color: #7a9180;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: .9rem;
+            transition: color .2s, background .2s, border-color .2s;
+            position: relative;
+        }
+
+            .ss-icon-btn:hover {
+                color: #e8f0e9;
+                background: rgba(255,255,255,0.07);
+                border-color: rgba(255,255,255,0.12);
+            }
+
+        .ss-notif-dot {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ade80;
+        }
+
+        /* Main content offset — pushed right of sidebar */
+        .ss-main-content {
+            margin-left: 260px;
+            min-height: 100vh;
+            background: #080d10;
+            transition: margin-left .28s cubic-bezier(.4,0,.2,1);
+            border-left: 1px solid rgba(255,255,255,0.07); /* subtle separator line */
+        }
+
+        body.sidebar-docked .ss-main-content {
+            margin-left: 68px;
+        }
+
+        /* Give all inner pages breathing room from the sidebar edge */
+        .main-content {
+            padding: 0 8px;
+        }
+
+        body.sidebar-docked .ss-main-content {
+            margin-left: 68px;
+        }
+
+        /* Inner scroll area */
+        .main-content {
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="e-bigger">
+
+    @if (ViewData["HideLayout"] == null || !(bool)ViewData["HideLayout"])
+    {
+        <partial name="_SideBar" />
+
+        <div class="ss-main-content">
+
+            <!-- Top Bar -->
+            <nav class="ss-topbar">
+                <div class="ss-topbar-inner">
+                    <div class="ss-topbar-left">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search transactions..." class="ss-search-input" />
+                    </div>
+                    <div class="ss-topbar-right">
+                        <button class="ss-icon-btn" title="Notifications">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="ss-notif-dot"></span>
+                        </button>
+                        <button class="ss-icon-btn" title="Messages">
+                            <i class="fa-solid fa-message"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Body -->
+            <div class="main-content">
+                <div class="container-fluid px-0">
+                    <div class="@(ViewData["isDashboard"] == null ? "col-md-10 mx-auto py-4 px-4" : "")">
+                        <main role="main" class="pb-4">
+                            @if (ViewData["isDashboard"] == null)
+                            {
+                                <div class="row px-4 pt-4">
+                                    <div class="col-md-7">
+                                        <div class="d-flex flex-column mb-4">
+                                            <div class="d-flex mb-1">
+                                                <div class="flex-grow-1">
+                                                    <h3 class="fw-bold" style="font-family:'Syne',sans-serif;">@ViewData["PageTitle"]</h3>
+                                                </div>
+                                                <div>
+                                                    @if (ViewData["PageActionText"] != null)
+                                                    {
+                                                        <a class="btn btn-success" href="@ViewData["PageActionUrl"]"
+                                                           style="font-family:'Syne',sans-serif;font-weight:700;background:#4ade80;border-color:#4ade80;color:#080d10;">
+                                                            @ViewData["PageActionText"]
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <ejs-breadcrumb id="breadcrumb"
+                                                            separatorTemplate="@Html.Raw("<span class='fa-solid fa-angle-right'></span>")"></ejs-breadcrumb>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @RenderBody()
+                        </main>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <ejs-scripts></ejs-scripts>
+</body>
+</html>

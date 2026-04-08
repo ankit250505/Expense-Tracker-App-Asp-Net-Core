@@ -1,0 +1,205 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    ViewData["isDashboard"] = true;
+}
+
+
+<div class="dash-wrap">
+
+    <!-- Header -->
+    <div class="dash-header">
+        <div>
+            <h1>Dashboard</h1>
+            <p>Your financial snapshot at a glance</p>
+        </div>
+    </div>
+
+    <!-- Filter -->
+    <form asp-action="Index" method="get">
+        <div class="filter-card">
+            <div class="fc-field">
+                <span class="fc-label">Filter by Period</span>
+                <ejs-daterangepicker id="daterangepicker"
+                                     placeholder="Choose a date range"
+                                     format="dd-MMM-yy"
+                                     startDate="@ViewBag.StartDate"
+                                     endDate="@ViewBag.EndDate">
+                </ejs-daterangepicker>
+            </div>
+            <button type="submit" class="btn-filter">
+                <i class="fa-solid fa-filter"></i> Apply Filter
+            </button>
+        </div>
+    </form>
+
+    <!-- Summary Cards -->
+    <div class="summary-grid">
+        <div class="summary-card income">
+            <div class="s-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+            <div class="s-body">
+                <span class="s-label">Total Income</span>
+                <span class="s-value">@ViewBag.TotalIncome</span>
+            </div>
+        </div>
+        <div class="summary-card expense">
+            <div class="s-icon"><i class="fa-solid fa-arrow-trend-down"></i></div>
+            <div class="s-body">
+                <span class="s-label">Total Expense</span>
+                <span class="s-value">@ViewBag.TotalExpense</span>
+            </div>
+        </div>
+        <div class="summary-card balance">
+            <div class="s-icon"><i class="fa-solid fa-wallet"></i></div>
+            <div class="s-body">
+                <span class="s-label">Balance</span>
+                <span class="s-value">
+                    @((ViewBag.Balance as string)?.Replace("$", "₹") ?? ViewBag.Balance)
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="chart-grid">
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">Expense By Category</span>
+                <span class="panel-badge">This Period</span>
+            </div>
+            <ejs-accumulationchart id="doughnutchart" enableSmartLabels background="transparent">
+                <e-accumulation-series-collection>
+                    <e-accumulation-series dataSource="@ViewBag.DoughnutChartData"
+                                           xName="categoryTitleWithIcon" yName="amount"
+                                           innerRadius="60%" legendShape="Circle"
+                                           palettes=@(new string[] { "#4ade80", "#60a5fa", "#fb923c", "#a78bfa", "#facc15", "#f87171", "#34d399", "#818cf8", "#38bdf8", "#e879f9" })>
+                        <e-accumulationseries-datalabel name="formattedAmount" visible></e-accumulationseries-datalabel>
+                    </e-accumulation-series>
+                </e-accumulation-series-collection>
+                <e-accumulationchart-legendsettings position="Bottom" toggleVisibility="false">
+                    <e-legendsettings-textstyle color="#7a9180" size=".8rem"></e-legendsettings-textstyle>
+                </e-accumulationchart-legendsettings>
+                <e-accumulationchart-tooltipsettings enable></e-accumulationchart-tooltipsettings>
+            </ejs-accumulationchart>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">Income vs Expense</span>
+                <span class="panel-badge">Trend</span>
+            </div>
+            <ejs-chart id="spline-chart" background="transparent"
+                       palettes=@(new string[]{"#4ade80","#f87171"})>
+                <e-chart-primaryxaxis valueType="Category">
+                    <e-majorgridlines width="0"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                </e-chart-primaryxaxis>
+                <e-chart-primaryyaxis>
+                    <e-majorgridlines width="1" color="rgba(255,255,255,.05)" dashArray="3,5"></e-majorgridlines>
+                    <e-majorticklines width="0"></e-majorticklines>
+                    <e-linestyle width="0"></e-linestyle>
+                </e-chart-primaryyaxis>
+                <e-chart-chartarea><e-chartarea-border width="0"></e-chartarea-border></e-chart-chartarea>
+                <e-series-collection>
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="day" width="3"
+                              yName="income" name="Income"
+                              type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                    <e-series dataSource="@ViewBag.SplineChartData" xName="day" width="3"
+                              yName="expense" name="Expense"
+                              type="@Syncfusion.EJ2.Charts.ChartSeriesType.Spline"></e-series>
+                </e-series-collection>
+                <e-chart-legendsettings position="Top" alignment="Far" toggleVisibility="false">
+                    <e-legendsettings-textstyle color="#7a9180" size=".85rem"></e-legendsettings-textstyle>
+                </e-chart-legendsettings>
+                <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
+            </ejs-chart>
+        </div>
+    </div>
+
+    <!-- Bottom Row -->
+    <div class="bottom-grid">
+
+        <!-- Recent Transactions -->
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">Recent Transactions</span>
+                <a href="/Transaction" style="font-size:.8rem;color:#4ade80;text-decoration:none;font-weight:600;">
+                    View all <i class="fa-solid fa-arrow-right" style="font-size:.7rem;"></i>
+                </a>
+            </div>
+            <div style="padding:4px 24px 24px;">
+                <ejs-grid id="recent-transactions"
+                          dataSource="@ViewBag.RecentTransactions"
+                          gridLines="None">
+                    <e-grid-columns>
+                        <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                        <e-grid-column headerText="Date" field="Date" type="date" format="MMM-dd-yy"></e-grid-column>
+                        <e-grid-column headerText="Note" field="Note" clipMode="EllipsisWithTooltip"></e-grid-column>
+                        <e-grid-column headerText="Amount" field="Amount" template="₹ ${Amount}" textAlign="Right"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="panel" style="padding:20px 24px;">
+            <div class="panel-header" style="padding:0; margin-bottom:20px;">
+                <span class="panel-title">Quick Actions</span>
+            </div>
+
+            <a href="/Transaction/AddOrEdit" class="qa-item"
+               style="border:1px solid rgba(74,222,128,.15); background:rgba(74,222,128,.05);"
+               onmouseover="this.style.background='rgba(74,222,128,.1)'"
+               onmouseout="this.style.background='rgba(74,222,128,.05)'">
+                <div class="qa-icon" style="background:rgba(74,222,128,.12);color:#4ade80;">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <div>
+                    <span class="qa-title">Add Transaction</span>
+                    <span class="qa-sub">Log a new expense or income</span>
+                </div>
+            </a>
+
+            <a href="/Category/AddOrEdit" class="qa-item"
+               style="border:1px solid rgba(96,165,250,.12); background:rgba(96,165,250,.04);"
+               onmouseover="this.style.background='rgba(96,165,250,.09)'"
+               onmouseout="this.style.background='rgba(96,165,250,.04)'">
+                <div class="qa-icon" style="background:rgba(96,165,250,.12);color:#60a5fa;">
+                    <i class="fa-solid fa-folder-plus"></i>
+                </div>
+                <div>
+                    <span class="qa-title">New Category</span>
+                    <span class="qa-sub">Organise your spending types</span>
+                </div>
+            </a>
+
+            <a href="/Transaction" class="qa-item"
+               style="border:1px solid rgba(250,204,21,.12); background:rgba(250,204,21,.04);"
+               onmouseover="this.style.background='rgba(250,204,21,.09)'"
+               onmouseout="this.style.background='rgba(250,204,21,.04)'">
+                <div class="qa-icon" style="background:rgba(250,204,21,.12);color:#facc15;">
+                    <i class="fa-solid fa-list"></i>
+                </div>
+                <div>
+                    <span class="qa-title">All Transactions</span>
+                    <span class="qa-sub">View &amp; manage your full history</span>
+                </div>
+            </a>
+
+            <a href="/Transaction/ExportPdf?startDate=@ViewBag.StartDate&endDate=@ViewBag.EndDate"
+               class="qa-item"
+               style="border:1px solid rgba(167,139,250,.12); background:rgba(167,139,250,.04);"
+               onmouseover="this.style.background='rgba(167,139,250,.09)'"
+               onmouseout="this.style.background='rgba(167,139,250,.04)'">
+                <div class="qa-icon" style="background:rgba(167,139,250,.12);color:#a78bfa;">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                </div>
+                <div>
+                    <span class="qa-title">Export Report</span>
+                    <span class="qa-sub">Download PDF summary</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+</div>

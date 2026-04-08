@@ -1,0 +1,264 @@
+﻿@{
+    Layout = "_LayoutLanding";
+    ViewData["Title"] = "SpendSense – Master Your Money";
+}
+
+    <!-- ═══ NAVBAR ═══════════════════════════════════════════════════ -->
+    <nav id="navbar">
+        <div class="container inner">
+            <a href="#home" class="logo">Spend<span>Sense</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                @* <li><a href="#pricing">Pricing</a></li> *@
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="/Account/Register" class="btn btn-ghost">Sign In</a>
+                <a href="/Account/Login" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+    <section id="home">
+        <div class="hero-glow"></div>
+        <div class="container hero-inner">
+            <div class="tag reveal"><i class="fa-solid fa-circle-check"></i> Trusted by 50k+ users</div>
+            <h1 class="hero-title reveal">
+                Take <span class="accent">full control</span><br />of your finances
+            </h1>
+            <p class="hero-sub reveal">
+                Track every rupee, analyse spending patterns, and hit your savings goals — all in one beautifully simple dashboard.
+            </p>
+            <div class="hero-actions reveal">
+                <a href="/Account/Register" class="btn btn-primary btn-lg">
+                    Start for Free <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#features" class="btn btn-ghost btn-lg">
+                    See Features <i class="fa-solid fa-chevron-down"></i>
+                </a>
+            </div>
+
+            <div class="hero-stats reveal">
+                <div class="stat-item">
+                    <span class="stat-num">₹2.4Cr+</span>
+                    <span class="stat-label">Expenses Tracked</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">50k+</span>
+                    <span class="stat-label">Active Users</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">99.9%</span>
+                    <span class="stat-label">Uptime SLA</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">4.9★</span>
+                    <span class="stat-label">Avg. Rating</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FEATURES ═════════════════════════════════════════════════ -->
+    <section id="features">
+        <div class="container">
+            <div class="head reveal">
+                <div class="tag"><i class="fa-solid fa-sparkles"></i> What's inside</div>
+                <h2 class="section-title">Everything you need to spend smarter</h2>
+                <p class="section-sub">From quick logging to deep analytics — built for people who take their money seriously.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feat-card reveal">
+                    <div class="feat-icon ic-green"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Quick Expense Log</h3>
+                    <p>Add an expense in under 5 seconds. Smart category detection fills in the blanks so you stay in flow.</p>
+                </div>
+                <div class="feat-card reveal">
+                    <div class="feat-icon ic-blue"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>Visual Analytics</h3>
+                    <p>Interactive pie charts, trend lines, and heatmaps that make your spending story impossible to ignore.</p>
+                </div>
+                <div class="feat-card reveal">
+                    <div class="feat-icon ic-orange"><i class="fa-solid fa-wallet"></i></div>
+                    <h3>Budget Management</h3>
+                    <p>Set monthly budgets per category. Get notified before you overshoot — not after.</p>
+                </div>
+                <div class="feat-card reveal">
+                    <div class="feat-icon ic-purple"><i class="fa-solid fa-tags"></i></div>
+                    <h3>Smart Categorisation</h3>
+                    <p>Auto-tag transactions with custom or pre-built categories. Filter, slice, and export any subset.</p>
+                </div>
+                <div class="feat-card reveal">
+                    <div class="feat-icon ic-yellow"><i class="fa-solid fa-file-invoice"></i></div>
+                    <h3>PDF / CSV Reports</h3>
+                    <p>Download monthly summaries in one click. Ideal for tax season or personal audits.</p>
+                </div>
+                <div class="feat-card reveal">
+                    <div class="feat-icon ic-red"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Bank-grade Security</h3>
+                    <p>AES-256 encryption, two-factor auth, and zero third-party data selling. Your data stays yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* <!-- ═══ PRICING ══════════════════════════════════════════════════ -->
+    <section id="pricing">
+        <div class="container">
+            <div class="head reveal">
+                <div class="tag"><i class="fa-solid fa-tag"></i> Simple pricing</div>
+                <h2 class="section-title">No hidden fees. Ever.</h2>
+                <p class="section-sub">Start free, scale when you're ready. Cancel anytime — no questions asked.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free -->
+                <div class="price-card reveal">
+                    <div class="price-plan">Free</div>
+                    <div class="price-num"><sup>₹</sup>0<span>/mo</span></div>
+                    <p class="price-desc">Perfect for individuals just getting started.</p>
+                    <div class="price-divider"></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Up to 50 transactions/mo</li>
+                        <li><i class="fa-solid fa-check"></i> 3 budget categories</li>
+                        <li><i class="fa-solid fa-check"></i> Basic charts</li>
+                        <li class="off"><i class="fa-solid fa-xmark"></i> CSV / PDF export</li>
+                        <li class="off"><i class="fa-solid fa-xmark"></i> Priority support</li>
+                    </ul>
+                    <a href="/Account/Register" class="btn btn-ghost" style="width:100%;justify-content:center;">Get Started Free</a>
+                </div>
+
+                <!-- Pro (Popular) -->
+                <div class="price-card popular reveal">
+                    <div class="price-plan">Pro</div>
+                    <div class="price-num"><sup>₹</sup>299<span>/mo</span></div>
+                    <p class="price-desc">For power users who want the full picture.</p>
+                    <div class="price-divider"></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Unlimited transactions</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited categories</li>
+                        <li><i class="fa-solid fa-check"></i> Advanced analytics</li>
+                        <li><i class="fa-solid fa-check"></i> CSV &amp; PDF export</li>
+                        <li><i class="fa-solid fa-check"></i> Priority support</li>
+                    </ul>
+                    <a href="/Account/Register" class="btn btn-primary" style="width:100%;justify-content:center;">Start Pro Trial</a>
+                </div>
+
+                <!-- Business -->
+                <div class="price-card reveal">
+                    <div class="price-plan">Business</div>
+                    <div class="price-num"><sup>₹</sup>799<span>/mo</span></div>
+                    <p class="price-desc">For teams tracking shared budgets together.</p>
+                    <div class="price-divider"></div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Everything in Pro</li>
+                        <li><i class="fa-solid fa-check"></i> Up to 10 team members</li>
+                        <li><i class="fa-solid fa-check"></i> Role-based access</li>
+                        <li><i class="fa-solid fa-check"></i> Shared budget pools</li>
+                        <li><i class="fa-solid fa-check"></i> Dedicated account manager</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section> *@
+
+    <!-- ═══ CONTACT ══════════════════════════════════════════════════ -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-wrap">
+                <div class="contact-left reveal">
+                    <div class="tag"><i class="fa-solid fa-envelope"></i> Get in touch</div>
+                    <h2>We'd love to hear from you</h2>
+                    <p>Have a question, feature request, or just want to say hi? Drop us a message and we'll get back to you within one business day.</p>
+                    <div class="contact-info">
+                        <div class="contact-info-item"><i class="fa-solid fa-envelope"></i> support@spendsense.in</div>
+                        <div class="contact-info-item"><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
+                        <div class="contact-info-item"><i class="fa-solid fa-location-dot"></i> India</div>
+                        <div class="contact-info-item"><i class="fa-solid fa-clock"></i> Mon – Fri, 9 AM – 6 PM IST</div>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" placeholder="Rahul" />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Sharma" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="rahul@example.com" />
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" placeholder="How can we help?" />
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Tell us more about your query..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" style="width:100%;justify-content:center;">
+                        Send Message <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══════════════════════════════════════════════════ -->
+    <footer>
+        <div class="container footer-inner">
+            <span class="footer-copy">© 2025 SpendSense. Built with ♥ in India.</span>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    @section Scripts{
+        <script>
+        // ── Navbar scroll effect ──────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+        });
+
+        // ── Reveal on scroll ─────────────────────────────────────────
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    // Stagger siblings in the same parent
+                    const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+                    const idx = siblings.indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, idx * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => observer.observe(el));
+
+        // ── Smooth scroll for anchor links ───────────────────────────
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+    }
