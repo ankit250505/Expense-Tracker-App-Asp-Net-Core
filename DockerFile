@@ -2,10 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /app
 
-COPY "Expense Tracker.csproj" ./
-RUN dotnet restore "Expense Tracker.csproj"
-
 COPY . ./
+RUN dotnet restore "Expense Tracker.csproj"
 RUN dotnet publish "Expense Tracker.csproj" -c Release -o out
 
 # Runtime stage
